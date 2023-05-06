@@ -25,3 +25,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/users', [UserController::class, 'index'])->name('listUsers');
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editUser');
+Route::post('/users/{id}/update', [UserController::class, 'update'])->name('updateUser');
