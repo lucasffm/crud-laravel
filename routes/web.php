@@ -24,3 +24,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/users', [UserController::class, 'index'])->name('listUsers');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('editUser');
