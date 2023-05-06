@@ -8,9 +8,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('id', 'asc')->get();
+
+        $query = User::orderBy('id', 'asc');
+
+        foreach ($request->query() as $key => $value) {
+            if (!is_null($value)) {
+                $query = $query->where($key, 'ILIKE', '%' . $value . '%');
+            }
+        }
+
+        $users = $query->get();
         return view('users/list', ["users" => $users]);
     }
 

@@ -8,7 +8,18 @@
                 <div class="card-header">{{ __('Listagem de usuários') }}</div>
 
                 <div class="card-body">
-
+                    <form action="{{ route('listUsers') }}" method="GET">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="name" placeholder="Nome" value="{{ Request::get('name') }}">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="email" placeholder="email" value="{{ Request::get('email') }}">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn" type="submit">Filtrar</button>
+                            </div>
+                    </form>
 
                     <table class="table">
                         <thead>
