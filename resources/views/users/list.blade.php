@@ -27,7 +27,13 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td><a class="btn btn-info" href="{{ route('editUser', $user->id) }}">Editar</a></td>
-                                <td><a class="btn {{ $user->is_active ? 'btn-danger' : 'btn-success' }}" href="{{ route('listUsers') }}">{{ $user->is_active ? 'Desativar' : 'Ativar' }}</a></td>
+                                <td>
+                                    <form action="{{ route('changeStatus', $user->id) }}" method="POST">
+                                        @csrf
+                                        @method('post')
+                                        <button class="btn {{ $user->is_active ? 'btn-danger' : 'btn-success' }}" type="submit">{{ $user->is_active ? 'Desativar' : 'Ativar' }}</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

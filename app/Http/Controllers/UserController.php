@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id', 'asc')->get();
         return view('users/list', ["users" => $users]);
     }
 
@@ -24,6 +24,14 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
+        return Redirect::to('/users');
+    }
+
+    public function changeStatus($id)
+    {
+        $user = User::findOrFail($id);
+        $user->is_active = !$user->is_active;
+        $user->save();
         return Redirect::to('/users');
     }
 }
