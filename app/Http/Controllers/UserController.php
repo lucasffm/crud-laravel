@@ -12,9 +12,11 @@ class UserController extends Controller
     {
 
         $query = User::orderBy('id', 'asc');
+        $model = new User();
+        $available_fields = $model->getFillable();
 
         foreach ($request->query() as $key => $value) {
-            if (!is_null($value)) {
+            if (!is_null($value) && in_array($key, $available_fields)) {
                 $query = $query->where($key, 'ILIKE', '%' . $value . '%');
             }
         }
